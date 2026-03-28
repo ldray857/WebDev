@@ -1,0 +1,70 @@
+#gallery-section { 
+    padding: 30px 5%; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+
+.gallery-text p {
+    font-family: 'Noto Serif SC', serif;
+    /* 1.2rem 大约是 19px 左右，比默认大一点点，很有质感 */
+    font-size: 19px; 
+    letter-spacing: 0.3em;
+    color: #333; /* 稍微浅一点的黑，更有“文艺感” */
+    text-align: center;
+    margin: 20px auto; /* 增加上下间距 */
+    width: 100%;
+}
+
+
+.masonry-layout { 
+    column-count: 3; 
+    column-gap: 25px; 
+}
+
+@media (max-width: 768px) { .masonry-layout { column-count: 2; } }
+@media (max-width: 480px) { .masonry-layout { column-count: 1; } }
+
+.gallery-item {
+    break-inside: avoid;
+    margin-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    display: block;
+    filter: grayscale(100%) contrast(0.9);
+    transition: filter 0.8s ease, transform 0.8s ease;
+}
+
+.gallery-item:hover img {
+    filter: grayscale(0%) contrast(1);
+    transform: scale(1.03);
+}
+
+.caption {
+    position: absolute;
+    bottom: -80px;
+    left: 0;
+    width: 100%;
+    padding: 30px 15px 15px;
+    background: linear-gradient(transparent, rgba(250, 249, 246, 0.95) 40%);
+    text-align: center;
+    transition: bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.gallery-item:hover .caption { bottom: 0; }
+
+.caption .year { 
+    font-weight: bold; 
+    font-size: 1.1rem; 
+    color: #555; 
+    display: block; 
+    margin-bottom: 5px;
+}
+
+.caption p { font-size: 0.9rem; color: #777; }

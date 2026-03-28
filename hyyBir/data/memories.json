@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "imageUrl": "https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=800&q=80",
+    "year": "2023",
+    "caption": "阳光与风的触感，定格在这一帧",
+    "pantoneColor": "#FFB6C1",
+    "pantoneName": "Rose Quartz"
+  },
+  {
+    "id": 2,
+    "imageUrl": "https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80",
+    "year": "2024",
+    "caption": "画展上的色彩，不及你眼底的万分之一",
+    "pantoneColor": "#AEC6CF",
+    "pantoneName": "Pastel Blue"
+  },
+  {
+    "id": 3,
+    "imageUrl": "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?w=800&q=80",
+    "year": "2025",
+    "caption": "那些被颜料填满的，闪闪发光的日子",
+    "pantoneColor": "#FDFD96",
+    "pantoneName": "Pastel Yellow"
+  },
+  {
+    "id": 4,
+    "imageUrl": "https://images.unsplash.com/photo-1505909182942-e2f09aee3e89?w=800&q=80",
+    "year": "2026",
+    "caption": "20岁拥抱更绚烂的色彩",
+    "pantoneColor": "#CFCFC4",
+    "pantoneName": "Pastel Grey"
+  }
+]

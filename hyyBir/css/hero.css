@@ -1,0 +1,97 @@
+/* 彻底解决不居中问题的 css/hero.css */
+
+#hero {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    /* 核心：确保 Flex 容器主轴和交叉轴全部居中 */
+    justify-content: center; 
+    align-items: center;    
+    
+    background: linear-gradient(-45deg, #fbc2eb, #a1c4fd, #fdcbf1, #e2ebf0);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    position: relative;
+    overflow: hidden;
+    /* 清除所有可能导致偏移的内边距 */
+    padding: 0;
+    margin: 0;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.hero-text {
+    z-index: 2;
+    width: 100%;      /* 占满宽度以便文字居中 */
+    max-width: 900px; /* 防止超大屏幕上文字拉得太散 */
+    text-align: center; /* 核心：确保容器内所有文字水平居中 */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 确保子元素在 Flex 轴上也居中 */
+    transform: translateY(-5vh);
+}
+
+.hero-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 6vw; /* 动态大小 */
+    font-weight: 700;
+    line-height: 1.1;
+    color: #fff;
+    /* 核心：强制文字居中，并清除所有外边距干扰 */
+    text-align: center;
+    margin: 0 auto 20px auto; 
+    width: 100%;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.hero-text p {
+    font-family: 'Noto Serif SC', serif;
+    font-size: 25px;
+    letter-spacing: 0.3em;
+    color: rgb(255, 255, 255);
+    /* 核心：强制居中 */
+    text-align: center;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* 滚动提示部分：脱离 hero-text 独立定位 */
+.scroll-hint {
+    position: absolute;
+    font-size: 2.0rem;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%); /* 完美的水平居中偏移 */
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: auto;
+}
+
+.scroll-hint span {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.scroll-hint::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.8), transparent);
+}
+
+/* 移动端特殊适配 */
+@media (max-width: 768px) {
+    .hero-text h1 { font-size: 14vw; }
+    .hero-text p { font-size: 20px; }
+}

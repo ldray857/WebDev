@@ -1,0 +1,144 @@
+/* ============================================================
+   Final pantone.css - 佟掌柜 20 岁生日专属版
+   功能：强制 2x2 布局 / 85% 居中图片 / 艺术级交互
+   ============================================================ */
+
+#pantone-section {
+    padding: 100px 5% 150px;
+    background-color: #faf9f6; /* 初始纸张底色 */
+    transition: background-color 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* 标题样式：优雅、居中 */
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    margin-bottom: 60px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    text-align: center;
+    color: #1a1a1a;
+}
+
+/* 核心：强制两列网格，即便缩小也不变 */
+.cards-wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 核心：死锁两列 */
+    gap: 30px; /* 卡片之间的间距 */
+    width: 95%;
+    max-width: 800px; /* 电脑端最美观的展示宽度 */
+    margin: 0 auto;
+    justify-items: center;
+}
+
+/* 色卡本体 */
+.pantone-card {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 3 / 4.2; /* 锁定潘通色卡的经典长宽比 */
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 1px solid rgba(0,0,0,0.03);
+    position: relative;
+}
+
+.pantone-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+}
+
+/* 色彩块：作为图片的背景和容器 */
+.color-block {
+    flex: 1;
+    width: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 图片包装盒：控制在 85% 大小 */
+.color-image-wrapper {
+    width: 85%;
+    height: 85%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff; /* 给图片一个纯白底色衬托 */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* 具体的图片 p1, p2, p3, p4 */
+.p-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 自动裁剪以适配 85% 的区域，不拉伸 */
+    filter: brightness(1.02);
+    transition: transform 0.8s ease;
+}
+
+.pantone-card:hover .p-image {
+    transform: scale(1.15); /* 悬浮时图片轻微放大 */
+}
+
+/* 底部文字信息区 */
+.color-info {
+    text-align: left;
+    border-top: 2.5px solid #1a1a1a; /* 经典的潘通分割线 */
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+.color-hex {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: 0.5px;
+}
+
+.color-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #444;
+    margin-top: 4px;
+    letter-spacing: 1px;
+}
+
+.color-year {
+    font-size: 0.75rem;
+    font-style: italic;
+    color: #999;
+    margin-top: 8px;
+}
+
+/* 移动端适配：确保小屏文字不拥挤 */
+@media (max-width: 600px) {
+    .cards-wrapper {
+        gap: 15px;
+    }
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+    .color-hex {
+        font-size: 1.1rem;
+    }
+    .color-info {
+        padding-top: 10px;
+    }
+}
