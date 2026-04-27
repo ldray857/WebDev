@@ -1,52 +1,70 @@
 /**
- * 全局核心交互逻辑
+ * 全局核心交互逻辑 - 增强版
  */
 const App = {
-    // 视觉反馈：屏幕震动
+    // 1. 视觉反馈：屏幕震动
     shakeScreen(duration = 200) {
-        document.body.classList.add('shake-active'); // 需在 CSS 中定义 shake-active 动画
+        document.body.classList.add('shake-active');
         setTimeout(() => {
             document.body.classList.remove('shake-active');
         }, duration);
     },
 
-    // 视觉反馈：色彩闪烁（通常用于错误提示）
-    flashError() {
-        const originalBg = document.body.style.backgroundColor;
-        document.body.style.backgroundColor = '#4a0000';
-        setTimeout(() => {
-            document.body.style.backgroundColor = originalBg;
-        }, 150);
+    // 2. Boss 战状态管理
+    bossConfig: {
+        sequence: [91, 78, 66, 19, 13, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+        currentIndex: 0,
+        maxHp: 9178
     },
 
     /**
-     * Boss 战核心逻辑
-     * @param {number} initialHp 初始血量
-     * @param {Function} onWin 胜利回调
+     * 执行攻击逻辑
+     * 处理数字切换、进度条步进、震动及跳转
      */
-    initBossFight(initialHp, onWin) {
-        let currentHp = initialHp;
-        const hpBar = document.getElementById('hp-bar');
-        const hpText = document.getElementById('hp');
+    executeBossHit() {
+        const config = this.bossConfig;
+        const totalSteps = config.sequence.length - 1;
+
+        if (config.currentIndex >= totalSteps) return;
+
+        // 索引递增
+        config.currentIndex++;
+
+        // 获取 DOM 元素
         const bossEl = document.getElementById('boss');
+        const hpText = document.getElementById('hp');
+        const hpBar = document.getElementById('hp-bar');
 
-        return {
-            attack(damage) {
-                if (currentHp <= 0) return;
+        // 更新数字显示
+        const nextNum = config.sequence[config.currentIndex];
+        if (bossEl) bossEl.innerText = nextNum;
 
-                currentHp -= damage;
-                App.shakeScreen(100);
-                
-                // 更新 UI
-                if (hpBar) hpBar.value = currentHp;
-                if (hpText) hpText.innerText = Math.max(0, currentHp);
+        // 更新进度条 (从 0 增加到 15)
+        if (hpBar) hpBar.value = config.currentIndex;
 
-                if (currentHp <= 0) {
-                    if (bossEl) bossEl.innerText = "💀";
-                    setTimeout(onWin, 800);
-                }
-            }
-        };
+        // 更新百分比文案
+        const progressPercent = Math.floor((config.currentIndex / totalSteps) * 100);
+        if (hpText) hpText.innerText = progressPercent;
+
+        // 触发震动反馈
+        this.shakeScreen(100);
+
+        // 胜利判定
+        if (config.currentIndex === totalSteps) {
+            this.handleBossDefeated(bossEl);
+        }
+    },
+
+    /**
+     * 击败 Boss 后的表现
+     */
+    handleBossDefeated(bossEl) {
+        setTimeout(() => {
+            if (bossEl) bossEl.innerText = "🎂";
+            setTimeout(() => {
+                window.location.href = 'step5-final.html';
+            }, 800);
+        }, 500);
     }
 };
 
