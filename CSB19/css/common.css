@@ -1,4 +1,4 @@
-/* 引入中文字体 */
+/* 引入中文字体 - 优先加载本地系统字体以提高响应速度 */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap');
 
 :root {
@@ -11,30 +11,33 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; /* 去除移动端点击高亮 */
 }
 
 body {
-    font-family: 'Noto Sans SC', sans-serif;
+    font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background-color: var(--sys-black);
     color: white;
-    /* 禁止选中文字，防止整蛊穿帮 */
     user-select: none;
     -webkit-user-select: none;
-    overflow: hidden; /* 禁止滚动条出现 */
-    cursor: default;
+    /* 允许垂直滚动，防止手机端内容溢出无法查看 */
+    overflow-x: hidden; 
+    overflow-y: auto;
+    line-height: 1.5;
 }
 
-/* 通用渐变背景 - 用于最终关卡 */
-.bg-final {
-    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #000000 100%);
-}
-
-/* 按钮基础动效 */
+/* 按钮点击动效优化 */
 button {
-    transition: all 0.2s ease;
+    transition: all 0.1s ease;
     cursor: pointer;
+    touch-action: manipulation; /* 优化移动端点击延迟 */
 }
 
 button:active {
-    transform: scale(0.95);
+    transform: scale(0.96);
+}
+
+/* 针对蓝屏页面的特殊背景 */
+.bg-blue-screen {
+    background-color: var(--sys-blue);
 }

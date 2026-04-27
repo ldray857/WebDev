@@ -2,29 +2,31 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>东北雨</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>东北雨 - BOSS战</title>
     <link href="https://unpkg.com/nes.css/css/nes.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/game.css">
-    <link rel="stylesheet" href="../css/glitch.css"> 
+    <link rel="stylesheet" href="../css/glitch.css">
 </head>
-<body class="bg-black text-white flex flex-col items-center justify-center h-screen overflow-hidden">
-    <div class="nes-container is-dark with-title w-[500px]">
+<body class="bg-black text-white flex flex-col items-center justify-center min-h-screen overflow-hidden p-4">
+    
+    <div class="nes-container is-dark with-title w-full max-w-[420px]">
         <p class="title">91 暗广</p>
-        <div class="text-center py-10">
+        <div class="text-center py-6">
             <p class="text-red-500 mb-2">加载进度：<span id="hp">0</span>%</p>
             
-            <progress class="nes-progress is-error w-full mb-10" value="0" max="15" id="hp-bar"></progress>
+            <progress class="nes-progress is-error w-full mb-8" value="0" max="15" id="hp-bar"></progress>
             
-            <div id="boss" class="text-[120px] cursor-pointer hover:scale-110 transition-transform active:scale-95 select-none" 
-                 onclick="App.executeBossHit()">
+            <div id="boss" class="text-[80px] md:text-[110px] cursor-pointer hover:scale-110 transition-transform active:scale-90 select-none touch-manipulation" 
+                 onclick="window.App ? App.executeBossHit() : alert('脚本加载中，请稍后')">
                 91
             </div>
             
-            <div class="mt-10 space-y-2">
-                <p class="text-[40px] text-gray-400 nes-font">点击数字</p>
-                <p class="text-[24px] text-gray-500 nes-font">近距离接触九一大神</p>
+            <div class="mt-8 space-y-2">
+                <p class="text-[30px] md:text-[20px] text-gray-300 nes-font">反复点击数字进入</p>
+                <p class="text-[30px] md:text-[20px] text-gray-300 nes-font">近距离接触九一大神</p>
             </div>
         </div>
     </div>
